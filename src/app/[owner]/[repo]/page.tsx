@@ -1057,11 +1057,7 @@ IMPORTANT:
         let treeData = null;
         let apiErrorDetails = '';
 
-        // Get default branch from repo info
-        const repoResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}`, { headers: createGithubHeaders(token) });
-        const defaultBranch = (await repoResponse.json()).default_branch || 'main';
-
-        for (const branch of [defaultBranch]) {
+        for (const branch of ['main', 'master']) {
           const apiUrl = `https://api.github.com/repos/${owner}/${repo}/git/trees/${branch}?recursive=1`;
           const headers = createGithubHeaders(token);
 
@@ -2007,4 +2003,3 @@ IMPORTANT:
     </div>
   );
 }
-
